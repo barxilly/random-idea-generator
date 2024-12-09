@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 :root {
     --background: #ffffff;
     --foreground: #171717;
@@ -13,19 +14,83 @@
     }
 }
 
+@keyframes slot-machine {
+  0% { opacity: 0; transform: translateY(-100%); }
+  20% { opacity: 0;}
+  50% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 0; }
+  100% { opacity: 0; transform: translateY(100%); }
+}
+
+.anim {
+  display: inline-block;
+  animation: slot-machine 0.1s linear infinite;
+}
+
 body {
     color: var(--foreground);
     background: var(--background);
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.t {
-    font-size: 3em !important;
-    vertical-align: middle !important;
-    padding: 0.1em !important;
+#a {
+    width: 2em !important;
 }
 
-.c {
-    background-color: #eee;
-    border-radius: 0.4em;
+@media (min-width: 740px) {
+    .t {
+        font-size: 2.4em !important;
+        vertical-align: middle !important;
+        padding: 0.1em !important;
+        user-select: none !important;
+        cursor: default !important;
+    }
+
+    
+
+    .c {
+        background-color: #eee;
+        border-radius: 0.4em;
+        text-align: center;
+        width: 15em !important;
+        user-select: none !important;
+    }
+
+    .gbt {
+        margin-top: 2em;
+        font-size: 3em !important;
+        padding: 1em;
+        height: fit-content !important;
+    }
+}
+
+@media (max-width: 740px) {
+    .t {
+        font-size: 1.8em !important;
+        vertical-align: middle !important;
+        padding: 0.1em !important;
+        user-select: none !important;
+        cursor: default !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle !important;
+    }
+
+    .c {
+        background-color: #eee;
+        border-radius: 0.4em;
+        text-align: center;
+        width: 7em !important;
+        height: 3.5em !important;
+        
+    }
+
+    .gbt {
+        border-radius: 0.4em !important;
+        margin-top: 0.6em;
+        font-size: 2em !important;
+        padding: 0.3em !important;
+        height: fit-content !important;
+    }
 }
