@@ -1,5 +1,5 @@
 "use client";
-import { Button, Center, Flex, MantineProvider, MultiSelect, Stack, Text } from "@mantine/core";
+import { Button, Center, Flex, Image, MantineProvider, MultiSelect, Stack, Text } from "@mantine/core";
 import '@mantine/core/styles.css'
 import { useState } from "react";
 
@@ -187,7 +187,7 @@ export default function Home() {
     window.open(url, '_blank');
   }
 
-  window.onload = run;
+
 
   return (
     <MantineProvider>
@@ -210,6 +210,7 @@ export default function Home() {
           <Button className="gbt2" variant="subtle" onClick={v0}>Create with v0</Button>
         </Stack>
       </Center>
+      <Image src="/favicon.ico" onLoad={run} alt="favicon" style={{ display: 'none' }} />
     </MantineProvider>
   );
 }
