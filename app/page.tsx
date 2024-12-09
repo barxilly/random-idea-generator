@@ -147,7 +147,8 @@ export default function Home() {
       flangs = langs;
     }
 
-    for (let e of Array.from({ length: 20 }, (_, i) => i + 1)) {
+    for (const e of Array.from({ length: 20 }, (_, i) => i + 1)) {
+      console.log(e);
       concept.innerText = concepts[Math.floor(Math.random() * concepts.length)];
       purpose.innerText = purposes[Math.floor(Math.random() * purposes.length)];
       lang.innerText = flangs[Math.floor(Math.random() * flangs.length)];
