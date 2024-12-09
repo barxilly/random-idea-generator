@@ -15,11 +15,11 @@
 }
 
 @keyframes slot-machine {
-  0% { opacity: 0; transform: translateY(-100%); }
+  0% { opacity: 0; transform: translateY(-100%); color:rgb(77, 59, 110); }
   20% { opacity: 0;}
   50% { opacity: 1; transform: translateY(0); }
   80% { opacity: 0; }
-  100% { opacity: 0; transform: translateY(100%); }
+  100% { opacity: 0; transform: translateY(100%); color:blue; }
 }
 
 .anim {
@@ -37,7 +37,7 @@ body {
     width: 2em !important;
 }
 
-@media (min-width: 740px) {
+@media (min-width: 1390px) {
     .t {
         font-size: 2.4em !important;
         vertical-align: middle !important;
@@ -62,9 +62,16 @@ body {
         padding: 1em;
         height: fit-content !important;
     }
+
+    .gbt2 {
+        margin-top: 2em;
+        font-size: 1.7em !important;
+        padding: 1em;
+        height: fit-content !important;
+    }
 }
 
-@media (max-width: 740px) {
+@media (max-width: 1390px) {
     .t {
         font-size: 1.8em !important;
         vertical-align: middle !important;
@@ -92,5 +99,12 @@ body {
         font-size: 2em !important;
         padding: 0.3em !important;
         height: fit-content !important;
+    }
+    .gbt2 {
+        border-radius: 0.4em !important;
+        margin-top: 0.6em;
+        font-size: 1.3em !important;
+        padding: 0.1em !important;
+        height: 2em !important;
     }
 }

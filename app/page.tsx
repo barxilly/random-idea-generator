@@ -1,8 +1,32 @@
 "use client";
-import { Button, Center, Flex, MantineProvider, Stack, Text } from "@mantine/core";
+import { Button, Center, Flex, MantineProvider, MultiSelect, Stack, Text } from "@mantine/core";
 import '@mantine/core/styles.css'
+import { useState } from "react";
 
 export default function Home() {
+  const [filter, setFilter] = useState<string[]>([]);
+
+  const langs = [
+    'Python',
+    'JavaScript',
+    'Rust',
+    'Assembly',
+    'Astro',
+    'React',
+    'C++',
+    'C#',
+    'C',
+    'Java',
+    'Go',
+    'TypeScript',
+    'Ruby',
+    'Swift',
+    'Fortran',
+    'PHP',
+    'HTML',
+    'Kotlin'
+  ]
+
   async function run() {
     const concept = document.getElementById('concept');
     const purpose = document.getElementById('purpose');
@@ -101,24 +125,7 @@ export default function Home() {
       'is pixel-art style'
     ]
 
-    const langs = [
-      'Python',
-      'JavaScript',
-      'Rust',
-      'Assembly',
-      'Astro',
-      'React',
-      'C++',
-      'C#',
-      'C',
-      'Java',
-      'Go',
-      'TypeScript',
-      'Ruby',
-      'Swift',
-      'Fortran',
-      'PHP',
-    ]
+
 
     concept.classList.add('anim');
     purpose.classList.add('anim');
@@ -128,10 +135,22 @@ export default function Home() {
     preload.volume = 0;
     preload.play();
 
+    let flangs: string[] = [];
+
+    if (filter.length > 0) {
+      flangs = langs.filter(l => filter.includes(l));
+      if (flangs.length === 0) {
+        lang.innerText = 'No languages selected';
+        return;
+      }
+    } else {
+      flangs = langs;
+    }
+
     for (let e of Array.from({ length: 20 }, (_, i) => i + 1)) {
       concept.innerText = concepts[Math.floor(Math.random() * concepts.length)];
       purpose.innerText = purposes[Math.floor(Math.random() * purposes.length)];
-      lang.innerText = langs[Math.floor(Math.random() * langs.length)];
+      lang.innerText = flangs[Math.floor(Math.random() * flangs.length)];
 
       if (concept.innerText[0].toLowerCase() === 'a' || concept.innerText[0].toLowerCase() === 'e' || concept.innerText[0].toLowerCase() === 'i' || concept.innerText[0].toLowerCase() === 'o' || concept.innerText[0].toLowerCase() === 'u') {
         const aElement = document.getElementById('a');
@@ -158,6 +177,15 @@ export default function Home() {
     ding.play();
   }
 
+  function v0() {
+    const concept = document.getElementById('concept');
+    const purpose = document.getElementById('purpose');
+    const lang = document.getElementById('lang');
+    const string = "A " + concept?.innerText + " that " + purpose?.innerText + " written in " + lang?.innerText;
+    const url = "https://v0.dev/chat?q=" + encodeURIComponent(string);
+    window.open(url, '_blank');
+  }
+
   window.onload = run;
 
   return (
@@ -166,17 +194,19 @@ export default function Home() {
         <Stack>
           <Flex>
             <Text className="t pl" id="a">A&nbsp;</Text>
-            <Text color="blue" className="t c" id="concept">word</Text>
+            <Text color="blue" className="t c" id="concept">thing</Text>
             <Text className="t pl">&nbsp;that&nbsp;</Text>
-            <Text color="blue" className="t c" id="purpose">words</Text>
+            <Text color="blue" className="t c" id="purpose">does something</Text>
           </Flex>
           <Flex>
             <Center style={{ width: '100%' }}>
               <Text className="t pl">written in&nbsp;</Text>
-              <Text color="blue" className="t c" id="lang">word</Text>
+              <Text color="blue" className="t c" id="lang">a language</Text>
             </Center>
           </Flex>
           <Button className="gbt" onClick={run}>Go!</Button>
+          <MultiSelect id="filter" value={filter} onChange={setFilter} label="Filter Language(s)" data={[...langs]}></MultiSelect>
+          <Button className="gbt2" variant="subtle" onClick={v0}>Create with v0</Button>
         </Stack>
       </Center>
     </MantineProvider>
